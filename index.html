@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SNAP-IV 26 Item Assessment</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app-container">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="app-header">
+
+        <h1>
+            SNAP-IV 26-Item Assessment
+        </h1>
+
+        <p>
+            Automated Scoring &amp; Assessment System
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CHILD INFORMATION
+    ====================================================== -->
+
+    <section
+        class="card print-assessment-page"
+        id="childInformationSection"
+    >
+
+        <h2>
+            Child Information
+        </h2>
+
+
+        <div class="form-grid">
+
+
+            <!-- CHILD NAME -->
+
+            <div class="form-group">
+
+                <label for="childName">
+                    Child Name
+                </label>
+
+                <input
+                    type="text"
+                    id="childName"
+                    placeholder="Enter child name"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- UID -->
+
+            <div class="form-group">
+
+                <label for="uid">
+                    UID / Case ID
+                </label>
+
+                <input
+                    type="text"
+                    id="uid"
+                    placeholder="Enter UID / Case ID"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- CLASS -->
+
+            <div class="form-group">
+
+                <label for="className">
+                    Class
+                </label>
+
+                <input
+                    type="text"
+                    id="className"
+                    placeholder="Enter class"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- SCHOOL -->
+
+            <div class="form-group">
+
+                <label for="schoolName">
+                    School Name
+                </label>
+
+                <input
+                    type="text"
+                    id="schoolName"
+                    placeholder="Enter school name"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- GENDER -->
+
+            <div class="form-group">
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender">
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ASSESSMENT DATE -->
+
+            <div class="form-group">
+
+                <label for="assessmentDate">
+                    Date of Assessment
+                </label>
+
+                <input
+                    type="date"
+                    id="assessmentDate"
+                >
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SNAP-IV ASSESSMENT
+    ====================================================== -->
+
+    <section
+        class="card print-assessment-page"
+        id="assessmentSection"
+    >
+
+        <div class="section-heading">
+
+
+            <div>
+
+                <h2>
+                    SNAP-IV 26-Item Rating Scale
+                </h2>
+
+
+                <p class="instruction">
+
+                    Select one response for each item.
+
+                </p>
+
+
+
+                <!-- RESPONSE GUIDE -->
+
+                <div class="response-key">
+
+
+                    <div class="response-key-title">
+                        Response Guide
+                    </div>
+
+
+                    <div class="response-key-items">
+
+
+                        <div class="response-key-item">
+
+                            <span class="response-key-score">
+                                0
+                            </span>
+
+                            Not at all
+
+                        </div>
+
+
+                        <div class="response-key-item">
+
+                            <span class="response-key-score">
+                                1
+                            </span>
+
+                            Just a little
+
+                        </div>
+
+
+                        <div class="response-key-item">
+
+                            <span class="response-key-score">
+                                2
+                            </span>
+
+                            Quite a bit
+
+                        </div>
+
+
+                        <div class="response-key-item">
+
+                            <span class="response-key-score">
+                                3
+                            </span>
+
+                            Very much
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-area">
+
+                <div
+                    id="progressText"
+                    class="progress-text"
+                >
+                    0 / 26 answered
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ITEMS GENERATED BY JAVASCRIPT
+        ================================================== -->
+
+        <div id="itemsContainer"></div>
+
+
+
+        <!-- =================================================
+             CALCULATE BUTTON
+        ================================================== -->
+
+        <div class="action-area">
+
+            <button
+                type="button"
+                id="calculateBtn"
+                onclick="calculateScores()"
+            >
+                Calculate Scores
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RESULTS SECTION
+    ====================================================== -->
+
+    <section
+        id="resultsSection"
+        class="card results-section hidden"
+    >
+
+        <h2>
+            Assessment Results
+        </h2>
+
+
+
+        <!-- =================================================
+             DOMAIN RESULTS
+        ================================================== -->
+
+        <div class="results-grid">
+
+
+            <!-- INATTENTION -->
+
+            <div class="result-card">
+
+                <h3>
+                    Inattention
+                </h3>
+
+
+                <div class="result-value">
+
+                    <span id="inattentionScore">
+                        —
+                    </span>
+
+                    <small>
+                        / 27
+                    </small>
+
+                </div>
+
+
+                <p>
+                    Mean:
+
+                    <strong id="inattentionMean">
+                        —
+                    </strong>
+                </p>
+
+
+                <div
+                    id="inattentionSeverity"
+                    class="severity"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <!-- HYPERACTIVITY / IMPULSIVITY -->
+
+            <div class="result-card">
+
+                <h3>
+                    Hyperactivity / Impulsivity
+                </h3>
+
+
+                <div class="result-value">
+
+                    <span id="hyperactivityScore">
+                        —
+                    </span>
+
+                    <small>
+                        / 27
+                    </small>
+
+                </div>
+
+
+                <p>
+                    Mean:
+
+                    <strong id="hyperactivityMean">
+                        —
+                    </strong>
+                </p>
+
+
+                <div
+                    id="hyperactivitySeverity"
+                    class="severity"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <!-- OPPOSITION / DEFIANCE -->
+
+            <div class="result-card">
+
+                <h3>
+                    Opposition / Defiance
+                </h3>
+
+
+                <div class="result-value">
+
+                    <span id="oppositionScore">
+                        —
+                    </span>
+
+                    <small>
+                        / 24
+                    </small>
+
+                </div>
+
+
+                <p>
+                    Mean:
+
+                    <strong id="oppositionMean">
+                        —
+                    </strong>
+                </p>
+
+
+                <div
+                    id="oppositionSeverity"
+                    class="severity"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SNAP-IV TOTAL RAW SCORE
+        ================================================== -->
+
+        <div class="total-score-card">
+
+            <h3>
+                SNAP-IV Total Raw Score
+            </h3>
+
+
+            <div class="total-score-value">
+
+                <span id="snapTotalScore">
+                    —
+                </span>
+
+                <small>
+                    / 78
+                </small>
+
+            </div>
+
+
+            <p>
+                Sum of the Inattention, Hyperactivity /
+                Impulsivity, and Opposition / Defiance
+                domain scores. This raw total is provided
+                for reference and is not used alone to
+                determine diagnosis or overall severity.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PRELIMINARY INTERPRETATION
+        ================================================== -->
+
+        <div class="interpretation-box">
+
+            <h3>
+                Preliminary Interpretation
+            </h3>
+
+
+            <div id="interpretationText">
+
+                Results will appear after scoring.
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             REPORT GENERATION
+        ================================================== -->
+
+        <div
+            id="reportGenerationBox"
+            class="report-generation-area"
+        >
+
+            <h3>
+                Report Generation
+            </h3>
+
+
+            <p>
+                Scores have been calculated successfully.
+                You can now generate the Psychological
+                Screening &amp; Assessment Report.
+            </p>
+
+
+            <button
+                type="button"
+                id="generateReportBtn"
+                class="report-btn"
+                onclick="generateReport()"
+            >
+                Generate Psychological Report
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         GENERATED PROFESSIONAL REPORT
+    ====================================================== -->
+
+    <section
+        id="reportSection"
+        class="card report-section hidden"
+    >
+
+
+        <!-- REPORT TOOLBAR -->
+
+        <div class="report-toolbar">
+
+            <button
+                type="button"
+                class="report-btn secondary"
+                onclick="printReport()"
+            >
+                Print / Save as PDF
+            </button>
+
+        </div>
+
+
+
+        <!-- GENERATED PSYCHOLOGICAL REPORT -->
+
+        <div
+            id="generatedReport"
+            class="generated-report"
+        >
+
+            <!-- Report generated automatically by script.js -->
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRINT-ONLY SNAP-IV ASSESSMENT RECORD
+
+         IMPORTANT:
+         This is intentionally separate from generatedReport.
+
+         Page 1:
+         Simple readable child information +
+         answered SNAP-IV items.
+
+         Page 2 onward:
+         Professional generated report.
+
+         JavaScript populates this container.
+    ====================================================== -->
+
+    <section
+        id="printAssessmentPage"
+        class="print-only-assessment-page print-only"
+    >
+
+        <!-- Printable SNAP-IV assessment record
+             generated automatically by script.js -->
+
+    </section>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
